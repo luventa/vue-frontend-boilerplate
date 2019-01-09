@@ -1,5 +1,5 @@
 import chalk from'chalk'
-import { description, scripts } from '../../package.json'
+import { description } from '../../package.json'
 
 console.log([
   chalk.cyanBright.bold.underline('Description\n'),

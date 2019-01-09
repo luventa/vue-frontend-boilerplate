@@ -1,4 +1,4 @@
-src/server/controller/*.js
+src/static/**/*.js
 src/ui/**
 test/unit/coverage/**
 test/unit/*.js

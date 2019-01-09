@@ -1,4 +1,3 @@
-import path from 'path'
 import chalk from 'chalk'
 import Koa from 'koa'
 import { spawn } from 'child_process'

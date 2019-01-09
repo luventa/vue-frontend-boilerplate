@@ -1,5 +1,4 @@
 const path = require('path')
-const distRoot = path.resolve(`dist`)
 
 // Project compile config is here. Profile config is seperated in env.js
 module.exports = {
@@ -26,7 +25,6 @@ module.exports = {
     assetsSubDirectory: 'assets',
     assetsPublicPath: '/',
     nodeServerEnabled: false,
-    hotApiRegex: /[\/\\](route|util|middleware|controller)[\/\\]/,
     logLevel: 'debug'
   },
   source: {

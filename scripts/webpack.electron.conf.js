@@ -1,7 +1,5 @@
 import { DefinePlugin } from 'webpack'
-import merge from 'webpack-merge'
 import config from './config'
-import baseConfig from './webpack.base.conf'
 import { dependencies } from '../package.json'
 
 const { APP_UPDATER } = config.env.is_prod
