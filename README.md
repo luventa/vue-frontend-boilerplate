@@ -1,6 +1,10 @@
 # interbank-frontend-frame
 
-> Frontend framewor for Interbank R&D
+
+> Please use Nodejs > 9.x
+> Node version 10.14.2 is recommended
+
+Frontend framewor for Interbank R&D Team
 
 ### Set mirrors and repository
 
@@ -23,6 +27,8 @@ Install yarn for faster installation
 ```bash
 npm install yarn -g
 ```
+
+> Node-sass is a bitch for Windows! Copy this module from others before install deps.
 
 Install dependencies
 
