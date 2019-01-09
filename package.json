@@ -25,7 +25,8 @@
     "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src test",
     "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src test",
     "test": "npm run unit && npm run e2e",
-    "package": "node scripts/mkpkg.js"
+    "package": "node scripts/mkpkg.js",
+    "postinstall": "npm run dll"
   },
   "build": {
     "productName": "interbank-frontend-frame",
