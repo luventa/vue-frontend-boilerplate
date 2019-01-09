@@ -1,0 +1,5 @@
+src/server/controller/*.js
+src/ui/**
+test/unit/coverage/**
+test/unit/*.js
+test/e2e/*.js

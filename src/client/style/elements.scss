@@ -1,0 +1,37 @@
+/* Layout */
+
+.container {
+  min-height: 90vh;
+  margin: 0.75rem auto;
+  position: relative;
+  
+  @include desktop {
+    max-width: $desktop - 40px; // 960px
+  }
+
+  @include widescreen {
+    max-width: $widescreen - 40px; //1152px
+  }
+}
+
+.view {
+  background-color: $grey-light;
+  padding: 0.75rem;
+}
+
+.section {
+  padding: 3rem 1.5rem;
+}
+
+/* Button */
+$button: $grey-dark !default;
+$button-radius: $radius-small;
+
+.button {
+  color: $button;
+  border-radius: $button-radius;
+}
+
+/* Title */
+
+
