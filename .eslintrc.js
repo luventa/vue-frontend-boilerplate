@@ -25,11 +25,15 @@ module.exports = {
     'vue/max-attributes-per-line': [2, {
       singleline: 10,
       multiline: {
-        max: 1,
-        allowFirstLine: false
+        max: 4,
+        allowFirstLine: true
       }
     }],
     'vue/name-property-casing': ['error', 'PascalCase'],
+    'vue/html-closing-bracket-newline': 0,
+    'vue/html-indent': ['error', 2, {
+      alignAttributesVertically: false
+    }],
     'no-var': 1,
     'no-console': 'off',
     // allow paren-less arrow functions
