@@ -10,7 +10,8 @@ module.exports = {
     es6: true
   },
   extends: [
-    'eslint:recommended',
+    // 'eslint:recommended',
+    'standard',
     'plugin:vue/recommended'
   ],
   globals: {
