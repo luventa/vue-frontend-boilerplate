@@ -25,13 +25,14 @@ const compileClient = () => {
     })
 
     app.env = 'development'
-    app.use(chafMiddleware)
-    app.use(devMiddleware(compiler))
-    app.use(hotMiddleware(compiler))
 
     if (proxyMiddlewares.length > 0) {
       app.use(...proxyMiddlewares)
     }
+
+    app.use(chafMiddleware)
+    app.use(devMiddleware(compiler))
+    app.use(hotMiddleware(compiler))
 
     if (!config.dev.nodeServerEnabled) {
       app.use(staticMiddleware(config.source.static))
