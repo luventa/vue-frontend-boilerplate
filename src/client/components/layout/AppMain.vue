@@ -24,7 +24,7 @@ export default {
   overflow-y: auto;
   height: calc(100vh - 3.75rem);
   margin: 0 auto;
-  background-color: white; 
+  background-color: white;
 
   &.landpage {
     height: calc(100vh - 1.25rem);

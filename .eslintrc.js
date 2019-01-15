@@ -35,6 +35,7 @@ module.exports = {
     'vue/html-indent': ['error', 2, {
       alignAttributesVertically: false
     }],
+    'import/first': 0,
     'no-var': 1,
     'no-console': 'off',
     // allow paren-less arrow functions
