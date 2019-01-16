@@ -1,7 +1,7 @@
 /* Basic */
 
 .is-clearfix {
-  @include clearfix
+  @include clearfix;
 }
 
 .is-pulled-left {
@@ -21,7 +21,7 @@
 // Overlay
 
 .is-overlay {
-  @include overlay
+  @include overlay;
 }
 
 /* Text Align */
@@ -89,17 +89,17 @@
 /* Miscellaneous */
 
 .is-disabled {
-  pointer-events: none
+  pointer-events: none;
 }
 
 .is-marginless {
-  margin: 0 !important
+  margin: 0 !important;
 }
 
 .is-paddingless {
-  padding: 0 !important
+  padding: 0 !important;
 }
 
 .is-unselectable {
-  @include unselectable
+  @include unselectable;
 }

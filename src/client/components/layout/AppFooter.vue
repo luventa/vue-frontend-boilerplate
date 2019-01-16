@@ -14,12 +14,12 @@ export default {
 <style lang="scss" scoped>
 .app-footer {
   background-color: white;
-  padding: 0.25rem 1.5rem;
+  padding: .25rem 1.5rem;
   line-height: 1;
-  box-shadow: 1px 0px 2px 1px rgba(0, 0, 0, .1);
+  box-shadow: 1px 0 2px 1px rgba(0, 0, 0, .1);
 
   * {
-    font-size: 0.625rem;
+    font-size: .625rem;
   }
 }
 </style>

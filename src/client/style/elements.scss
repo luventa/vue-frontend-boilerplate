@@ -2,9 +2,9 @@
 
 .container {
   min-height: 90vh;
-  margin: 0.75rem auto;
+  margin: .75rem auto;
   position: relative;
-  
+
   @include desktop {
     max-width: $desktop - 40px; // 960px
   }
@@ -16,7 +16,7 @@
 
 .view {
   background-color: $grey-light;
-  padding: 0.75rem;
+  padding: .75rem;
 }
 
 .section {
@@ -33,5 +33,3 @@ $button-radius: $radius-small;
 }
 
 /* Title */
-
-

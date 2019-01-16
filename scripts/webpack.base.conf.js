@@ -2,6 +2,7 @@ import path from 'path'
 import config from './config'
 import { ContextReplacementPlugin, DllReferencePlugin } from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import StyleLintPlugin from 'stylelint-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
 import { resolveAssets } from './utils/asset'
 
@@ -92,9 +93,15 @@ const baseConfig = {
     /* eslint-enable no-useless-escape */
     new DllReferencePlugin({
       context: __dirname,
-      manifest:require('../src/static/dll/vendor.manifest.json')
+      manifest: require('../src/static/dll/vendor.manifest.json')
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new StyleLintPlugin({
+      files: ['src/client/**/*.vue', 'src/client/**/*.s?(a|c)ss'],
+      cache: true,
+      emitErrors: true,
+      failOnError: false
+    })
   ]
 }
 

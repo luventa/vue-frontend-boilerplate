@@ -29,14 +29,17 @@ h6 {
   padding: 0;
 }
 
-
 /* Headings */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: 100%;
   font-weight: normal;
 }
-
 
 /* List */
 
@@ -46,7 +49,10 @@ ul {
 
 /* Form */
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   margin: 0;
 }
 
@@ -67,23 +73,30 @@ html {
 
 /* Media */
 
-img, embed, object, audio, video {
+img,
+embed,
+object,
+audio,
+video {
   height: auto;
   max-width: 100%;
 }
 
 /* Iframe */
+
 iframe {
   border: 0;
 }
 
 /* Table */
-table{
+
+table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-td, th {
+td,
+th {
   padding: 0;
   text-align: left;
 }

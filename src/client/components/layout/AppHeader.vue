@@ -1,7 +1,7 @@
 <template>
   <nav :class="classes">
     <div>
-      <section style="background-image: url(static/image/logo.png)" />
+      <section style="background-image: url(static/image/logo.png);" />
       <RouteButton to="/">
         Home
       </RouteButton>
@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/style/mixins.scss";
+@import '~@/style/mixins.scss';
 
 .app-header {
   @include dragable;
@@ -76,11 +76,12 @@ export default {
     @include undragable;
     display: flex;
 
-    i, section {
+    i,
+    section {
       display: flex;
       width: 2.5rem;
       height: 2.5rem;
-      padding: 0.5rem;
+      padding: .5rem;
       background-repeat: no-repeat;
       background-size: 100%;
 
@@ -99,7 +100,7 @@ export default {
 
     .r-btn {
       line-height: 1.5;
-      padding: 0.5rem;
+      padding: .5rem;
       position: relative;
       display: flex;
       align-items: center;

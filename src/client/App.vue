@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss">
 @import '~animate.css';
-@import "./style/index.scss";
+@import './style/index.scss';
 
 #app {
   font-family: $family-primary;

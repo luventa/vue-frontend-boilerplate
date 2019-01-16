@@ -42,16 +42,16 @@ export default {
   -webkit-box-align: center;
   -webkit-app-region: no-drag;
 
-   &:before {
-     border-radius: inherit;
+  &:before {
+    border-radius: inherit;
     color: inherit;
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
     height: 100%;
     opacity: .12;
-    transition: .3s cubic-bezier(.25,.8,.5,1);
+    transition: .3s cubic-bezier(.25, .8, .5, 1);
     width: 100%;
   }
 }
