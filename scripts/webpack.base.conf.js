@@ -5,6 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import StyleLintPlugin from 'stylelint-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
 import { resolveAssets } from './utils/asset'
+import vendorManifest from '../src/static/dll/vendor.manifest.json'
 
 const baseConfig = {
   entry: {
@@ -81,6 +82,7 @@ const baseConfig = {
       filename: 'index.html',
       template: 'src/client/index.html',
       target: process.env.TARGET,
+      vendor: `/static/dll/${vendorManifest.name.replace(/_/g, '.')}.js`,
       inject: true,
       minify: {
         collapseWhitespace: true,
@@ -93,7 +95,7 @@ const baseConfig = {
     /* eslint-enable no-useless-escape */
     new DllReferencePlugin({
       context: __dirname,
-      manifest: require('../src/static/dll/vendor.manifest.json')
+      manifest: vendorManifest
     }),
     new VueLoaderPlugin(),
     new StyleLintPlugin({

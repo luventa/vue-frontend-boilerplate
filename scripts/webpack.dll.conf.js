@@ -12,13 +12,13 @@ module.exports = {
   },
   output: {
     path: config.output,
-    filename: '[name].dll.js',
-    library: '[name]_dll'
+    filename: '[name].[chunkhash:8].dll.js',
+    library: '[name]_[chunkhash:8]_dll'
   },
   performance: {
     hints: false
   },
-  plugins:[
+  plugins: [
     new CompressionWebpackPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',
@@ -31,8 +31,8 @@ module.exports = {
       minRatio: 0.8
     }),
     new webpack.DllPlugin({
+      name: '[name]_[chunkhash:8]_dll',
       path: path.join(config.output, '[name].manifest.json'),
-      name:'[name]_dll',
       context: __dirname
     })
   ]
