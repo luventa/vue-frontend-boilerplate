@@ -82,7 +82,7 @@ const baseConfig = {
       filename: 'index.html',
       template: 'src/client/index.html',
       target: process.env.TARGET,
-      vendor: `/static/dll/${vendorManifest.name.replace(/_/g, '.')}.js`,
+      vendor: `${config.env.is_web ? '/' : ''}static/dll/${vendorManifest.name.replace(/_/g, '.')}.js`,
       inject: true,
       minify: {
         collapseWhitespace: true,
