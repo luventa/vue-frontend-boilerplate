@@ -53,7 +53,7 @@ const clientConfig = {
   },
   plugins: [
     new DefinePlugin({
-      'process.env': require('./config/dev.env'),
+      'process.env': require('./config/dev.env')
     }),
     new HotModuleReplacementPlugin(),
     new FriendlyErrorsPlugin()
