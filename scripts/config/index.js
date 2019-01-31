@@ -31,6 +31,10 @@ module.exports = {
     root: path.resolve('src'),
     client: path.resolve('src/client'),
     electron: path.resolve('src/electron'),
+    styleResources:
+      process.env.TARGET === 'web'
+        ? [ path.resolve('src/client/style/global.scss') ]
+        : [ path.resolve('src/client/style/global.electron.scss') ],
     server: path.resolve('src/server'),
     static: path.resolve('src/static')
   },

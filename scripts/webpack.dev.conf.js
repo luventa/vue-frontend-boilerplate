@@ -41,12 +41,29 @@ const clientConfig = {
         }
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true }
+          }
+        ]
+      },
+      {
+        test: /\.(sa|sc)ss$/,
         use: [
           'vue-style-loader',
           'css-loader',
           'postcss-loader',
-          'sass-loader'
+          'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              sourceMap: true,
+              resources: config.source.styleResources
+            }
+          }
         ]
       }
     ]
