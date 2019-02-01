@@ -39,14 +39,12 @@
 // Dragable regin
 @mixin dragable {
   @include unselectable;
-
   -webkit-app-region: drag;
 }
 
 // Dragable regin
 @mixin undragable {
   @include unselectable;
-
   -webkit-app-region: no-drag;
 }
 
