@@ -28,8 +28,6 @@ Install yarn for faster installation
 npm install yarn -g
 ```
 
-> Node-sass is a bitch for Windows! Copy this module from others before install deps.
-
 Install dependencies
 
 ``` bash
@@ -82,6 +80,13 @@ npm run client:win32
 # Win32 application
 npm run client:win64
 ```
+
+# Tips
+
+> Node-sass is a bitch for some Windows users! Copy this module from others before install deps.
+
+> Install deps with `npm` might cause IE crash with development mode because of these reasons:
+  * `npm` will fetch devDependency `ansi-regex` with version ^3.0.0, which uses arrow function in its source code.
 
 #  Unit Testing
 
