@@ -2,6 +2,7 @@
 
 
 > Please use Nodejs > 9.x
+
 > Node version > 10.x is recommended
 
 Frontend boilerpalte for web and electron uses Webpack4 & Vue.js
@@ -70,6 +71,8 @@ npm run dist:client
 
 Pack for electron client
 
+> Other OS plat can be added in package.json
+
 ```bash
 # Unpacked client
 npm run client:unpack
@@ -83,7 +86,7 @@ npm run client:win64
 
 # Tips
 
-> Node-sass is a bitch for some Windows users! Copy this module from others before install deps.
+> Node-sass is a bitch for some Windows users! Copy this module from others before install deps if necessary.
 
 > Install deps with `npm` might cause IE crash with development mode because of these reasons:
   * `npm` will fetch devDependency `ansi-regex` with version ^3.0.0, which uses arrow function in its source code.
