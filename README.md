@@ -1,10 +1,10 @@
-# interbank-frontend-frame
+# vue-frontend-boilerpalte
 
 
 > Please use Nodejs > 9.x
-> Node version 10.14.2 is recommended
+> Node version > 10.x is recommended
 
-Frontend framewor for Interbank R&D Team
+Frontend boilerpalte for web and electron uses Webpack4 & Vue.js
 
 ### Set mirrors and repository
 

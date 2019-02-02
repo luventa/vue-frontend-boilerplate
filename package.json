@@ -1,8 +1,8 @@
 {
-  "name": "interbank-frontend-frame",
-  "version": "0.0.1",
+  "name": "vue-frontend-boilerpalte",
+  "version": "1.0.0",
   "author": "luventa <luventa@outlook.com>",
-  "description": "HSS Client frame based on Electron and VueJs",
+  "description": "Frontend boilerpalte for web and electron uses Webpack4 & Vue.js",
   "license": "MIT",
   "main": "./dist/main.js",
   "scripts": {
