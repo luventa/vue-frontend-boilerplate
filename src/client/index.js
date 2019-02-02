@@ -1,8 +1,7 @@
-// keep this polyfill util https://github.com/babel/babel/pull/7646 resolved.
 if (!('fetch' in window) || !('assign' in Object)) {
-  require('es6-promise/auto')
+  require('./polyfill')
 }
-// require('es6-promise/auto')
+
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 // import { cookie } from 'js-cookie'
