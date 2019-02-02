@@ -91,7 +91,6 @@
     "electron-devtools-installer": "^2.2.4",
     "electron-store": "^2.0.0",
     "electron-updater": "^4.0.6",
-    "es6-promise": "^4.2.5",
     "eslint": "^5.10.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-friendly-formatter": "^4.0.1",
