@@ -91,6 +91,26 @@ npm run client:win64
 > Install deps with `npm` might cause IE crash with development mode because of these reasons:
   * `npm` will fetch devDependency `ansi-regex` with version ^3.0.0, which uses arrow function in its source code.
 
+> There are two approaches to resolve static resources, especially images, in `/.vue` file and make it works in both browser and electron.
+  * Import static resources by using `style` attribute of html elements. And DO NOT start with `/`.
+    ```html
+    <template>
+      ...
+      <section style="background-image: url(static/image/logo.png);" />
+      ...
+    </template>
+  * Convert small image to stream data, which can be used in `<style>`.
+    ```scss
+    <style lang="scss" scoped>
+      ...
+      .close-icon {
+        background-image: url(data:image/svg+xml;base64,PD...4=);
+      }
+      ...
+    </style>
+    ```
+
+
 #  Unit Testing
 
 TBD
