@@ -1,13 +1,20 @@
+### STS ###
 .DS_Store
-.stylelintcache
-dist/*
-build/*
-src/static/dll/
-coverage
-node_modules/
+/dist/
+/build/
+/node_modules/
 npm-debug.log
 npm-debug.log.*
 thumbs.db
+!.gitkeep
+
+### IDE ###
+.idea
+.vscode
+
+### EXT ###
+.stylelintcache
+coverage
 yarn.lock
 package-lock.json
-!.gitkeep
+src/static/dll/
