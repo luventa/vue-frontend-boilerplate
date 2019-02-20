@@ -1,16 +1,16 @@
 module.exports = {
   NODE_ENV: '"testing"',
   ROUTE_MODE: '"history"',
-  APP_UPDATER: '"https://test-jrb2b-stg.pingan.com.cn/resource/download/app_client"',
+  APP_UPDATER: '"https://stg.demo.com/resource/download/app_client"',
   DEBUG: false,
   API_CONF: {
-    baseURL : process.env.TARGET === 'web'
+    baseURL: process.env.TARGET === 'web'
       ? '"/geteway"'
-      : '"https://test-jrb2b-stg.pingan.com.cn/geteway"',
+      : '"https://stg.demo.com/geteway"',
     timeout: 120 * 1000,
     withCredentials: true,
     headers: {
-      'application-token': '"680e24ad-43d6-4aef-baca-70752941f454"'
+      'x-app-token': '"680e24ad-43d6-4aef-baca-70752941f454"'
     }
   }
 }
