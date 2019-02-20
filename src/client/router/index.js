@@ -36,7 +36,8 @@ const lazyLoad = (name, index = false) => () => import(`@view/${name}${index ? '
 // }
 
 export default new Router({
-  // mode: process.env.ROUTE_MODE,
+  base: process.env.ROUTE_BASE,
+  mode: process.env.TARGET !== 'web' ? 'hash' : process.env.ROUTE_MODE,
   linkActiveClass: 'is-active',
   scrollBehavior: () => ({ y: 0 }),
   routes: [{

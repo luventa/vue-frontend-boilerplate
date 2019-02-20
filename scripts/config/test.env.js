@@ -1,8 +1,10 @@
 module.exports = {
   NODE_ENV: '"testing"',
+  ROUTE_BASE: '"/abs/"',
   ROUTE_MODE: '"history"',
   APP_UPDATER: '"https://stg.demo.com/resource/download/app_client"',
   DEBUG: false,
+  TARGET: `"${process.env.TARGET}"`,
   API_CONF: {
     baseURL: process.env.TARGET === 'web'
       ? '"/geteway"'

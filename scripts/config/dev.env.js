@@ -1,7 +1,9 @@
 module.exports = {
   NODE_ENV: '"development"',
+  ROUTE_BASE: '"/"',
   ROUTE_MODE: '"hash"',
   DEBUG: true,
+  TARGET: `"${process.env.TARGET}"`,
   API_CONF: {
     baseURL: '"/api"',
     timeout: 60 * 1000,
