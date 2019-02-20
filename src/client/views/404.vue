@@ -1,6 +1,6 @@
 <template>
   <article class="container">
-    <section>
+    <section class="not-found">
       你要访问的页面不存在
     </section>
   </article>
@@ -8,3 +8,11 @@
 
 <script>
 </script>
+
+<style lang="scss" scoped>
+.not-found {
+  width: 587px;
+  height: 270px;
+  background: url('~@/assets/images/test.png') no-repeat;
+}
+</style>

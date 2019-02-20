@@ -2,9 +2,8 @@ import path from 'path'
 import config from './config'
 import { ContextReplacementPlugin, DllReferencePlugin } from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import StyleLintPlugin from 'stylelint-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
-import { resolveAssets } from './utils/asset'
+import { resolveAssetRules } from './utils/asset'
 import vendorManifest from '../src/static/dll/vendor.manifest.json'
 
 const baseConfig = {
@@ -43,42 +42,27 @@ const baseConfig = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        use: 'vue-loader'
       },
       {
         test: /\.json$/,
         use: 'json-loader'
       },
-      {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
-        query: {
-          limit: 10000,
-          name: resolveAssets(config.is_dev ? 'img/[name].[ext]' : 'img/[name].[hash:7].[ext]')
-        }
-      },
-      {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: resolveAssets(config.is_dev ? 'media/[name].[ext]' : 'media/[name].[hash:7].[ext]')
-        }
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
-        query: {
-          limit: 10000,
-          name: resolveAssets(config.is_dev ? 'fonts/[name].[ext]' : 'fonts/[name].[hash:7].[ext]')
-        }
-      }
+      // Generate rules of assets, for using url-loader
+      // For importing assets inside <template> of .vue files,
+      // you need to use resource query [inline].
+      // eg. <img src="~@/assets/images/demo.png?inline">
+      ...resolveAssetRules({
+        image: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        media: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        font: /\.(woff2?|eot|ttf|otf)(\?.*)?$/
+      })
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       appVersion: new Date().getTime(),
-      title: `${config.env.is_dev ? '[DEV]' : ''} Interbank Frontend`,
+      title: `${config.env.is_dev ? '[DEV]' : ''} Vue Frontend Boilerplate`,
       filename: 'index.html',
       template: 'src/client/index.html',
       target: process.env.TARGET,
@@ -97,13 +81,7 @@ const baseConfig = {
       context: __dirname,
       manifest: vendorManifest
     }),
-    new VueLoaderPlugin(),
-    new StyleLintPlugin({
-      files: ['src/client/**/*.vue', 'src/client/**/*.s?(a|c)ss'],
-      cache: true,
-      emitErrors: true,
-      failOnError: false
-    })
+    new VueLoaderPlugin()
   ]
 }
 

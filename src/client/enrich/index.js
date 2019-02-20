@@ -5,7 +5,6 @@ import helper from './helper'
 // import other 3rd dependencies
 
 export default Vue => {
-  // Vue.use(estore)
   Vue.use(axios)
   Vue.use(cookie)
   Vue.use(crypto)

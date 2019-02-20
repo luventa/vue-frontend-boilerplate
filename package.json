@@ -30,8 +30,8 @@
     "postinstall": "npm run dll"
   },
   "build": {
-    "productName": "interbank-frontend-frame",
-    "appId": "oneconnect.interbank.client",
+    "productName": "vue-frontend-boilerplate",
+    "appId": "your.application.id",
     "directories": {
       "output": "build"
     },

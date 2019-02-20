@@ -1,9 +1,8 @@
 @import './reset.scss';
-@import './variables.scss';
-@import './mixins.scss';
 @import './elements.scss';
 @import './transitions.scss';
 @import './helpers.scss';
+@import '~@/assets/fonts/we-icons/iconfont.css';
 
 ::-webkit-scrollbar {
   width: 8px;

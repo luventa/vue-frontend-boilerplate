@@ -1,4 +1,5 @@
 import { DefinePlugin, HotModuleReplacementPlugin } from 'webpack'
+import StyleLintPlugin from 'stylelint-webpack-plugin'
 import merge from 'webpack-merge'
 import config from './config'
 import baseConfig from './webpack.base.conf'
@@ -56,7 +57,15 @@ const clientConfig = {
           'vue-style-loader',
           'css-loader',
           'postcss-loader',
-          'sass-loader',
+          // Inject a scss variable to distinguish plateform.
+          // platform: web | electron
+          {
+            loader: 'sass-loader',
+            options: {
+              data: `$platform: ${process.env.TARGET};`
+            }
+          },
+          // Makes scss variables inside scss file(s) global.
           {
             loader: 'sass-resources-loader',
             options: {
@@ -69,6 +78,12 @@ const clientConfig = {
     ]
   },
   plugins: [
+    new StyleLintPlugin({
+      files: ['src/client/**/*.vue', 'src/client/**/*.s?(a|c)ss'],
+      cache: true,
+      emitErrors: true,
+      failOnError: false
+    }),
     new DefinePlugin({
       'process.env': require('./config/dev.env')
     }),

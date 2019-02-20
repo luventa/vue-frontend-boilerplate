@@ -1,6 +1,6 @@
 <template>
   <section>
-    <img style="height: 30rem;" src="~@/assets/images/test.png">
+    <img style="height: 30rem;" src="~@/assets/images/test.png?inline">
     <div>
       <h1>Normal Request</h1>
       <button @click="test1">

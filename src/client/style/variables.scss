@@ -1,4 +1,4 @@
-/* Typography */
+// Typography
 
 $family-sans-serif: 'PingFangSC-Regular', 'Microsoft YaHei', BlinkMacSystemFont, 'Arial', sans-serif !default;
 $family-monospace:  'Inconsolata', 'Consolas', 'Monaco', monospace !default;
@@ -22,7 +22,7 @@ $weight-normal:   400 !default;
 $weight-semibold: 500 !default;
 $weight-bold:     700 !default;
 
-/* Colors */
+// Colors
 
 $orchid:        #9c51e0 !default;
 $orchid-light:  #bb90e0 !default;
@@ -61,7 +61,7 @@ $link-active: $orchid-dark !default;
 $link-focus: $orchid-dark !default;
 $link-visited: $orchid-dark !default;
 
-/* Radius */
+// Radius
 
 $radius-small: 2px !default;
 $radius: 3px !default;

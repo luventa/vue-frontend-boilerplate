@@ -15,6 +15,6 @@ export default {
 
 <style lang="scss" scoped>
 .demo-text {
-  color: $demo-color;
+  color: map-get($demo-colors, $platform);
 }
 </style>

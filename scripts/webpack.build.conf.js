@@ -6,7 +6,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import config from './config'
 import baseConfig from './webpack.base.conf'
-import { resolveAssets } from './utils/asset'
+import { resolveAssets, resolveFileName } from './utils/asset'
 
 const clientConfig = {
   output: {
@@ -30,7 +30,15 @@ const clientConfig = {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'sass-loader',
+          // Inject a scss variable to distinguish plateform.
+          // platform: web | electron
+          {
+            loader: 'sass-loader',
+            options: {
+              data: `$platform: ${process.env.TARGET};`
+            }
+          },
+          // Makes scss variables inside scss file(s) global.
           {
             loader: 'sass-resources-loader',
             options: {
@@ -43,7 +51,7 @@ const clientConfig = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: resolveAssets('css/[name].[contenthash].css')
+      filename: resolveFileName('css', '[contenthash]')
     }),
     new DefinePlugin({
       'process.env': config.env.is_prod
@@ -56,9 +64,10 @@ const clientConfig = {
 // Separate config for electron and web
 if (config.env.target === 'electron-renderer') {
   clientConfig.output = {
-    filename: '[name].js',
-    // libraryTarget: 'commonjs2',
-    path: config.output.root
+    path: config.output.root,
+    libraryTarget: 'commonjs2',
+    filename: resolveFileName('js'),
+    chunkFilename: resolveFileName('js')
   }
   clientConfig.module.rules.push({
     test: /\.(m?js|jsx)$/,

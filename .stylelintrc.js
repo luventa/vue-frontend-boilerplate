@@ -6,6 +6,7 @@ module.exports = {
     'at-rule-no-unknown': null,
     'color-hex-length': 'long',
     'declaration-empty-line-before': 'never',
+    'font-family-no-missing-generic-family-keyword': null,
     'rule-empty-line-before': 'always',
     'media-feature-name-no-vendor-prefix': true,
     'selector-list-comma-newline-after': 'always',
