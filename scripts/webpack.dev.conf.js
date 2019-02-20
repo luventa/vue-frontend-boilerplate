@@ -5,8 +5,19 @@ import config from './config'
 import baseConfig from './webpack.base.conf'
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 
+// Dependency electron-store:conf:write-file-atomic wraps require('worker_threads') with try...catch
+// These code will throw a warning that interrupt developing with electron.
+const hmrOptions = {
+  path: '/__webpack_hmr',
+  timeout: 20000,
+  reload: true,
+  quiet: true,
+  overlayWarnings: config.env.is_web
+}
+const hmrOptionString = Object.keys(hmrOptions).map(key => `${key}=${hmrOptions[key]}`).join('&')
+
 Object.keys(baseConfig.entry).forEach(name => {
-  baseConfig.entry[name] = ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&quiet=true&overlayWarnings=true'].concat(baseConfig.entry[name])
+  baseConfig.entry[name] = [`webpack-hot-middleware/client?${hmrOptionString}`].concat(baseConfig.entry[name])
 })
 
 const clientConfig = {
