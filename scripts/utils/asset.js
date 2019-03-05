@@ -26,7 +26,7 @@ export const resolveAssetRules = assetsMap => (
   Object.keys(assetsMap).map(assetType => {
     let test = { test: assetsMap[assetType] }
     let baseRule = {
-      loader: 'url-loader',
+      loader: env.is_web ? 'url-loader' : 'file-loader',
       options: {
         limit: 10000,
         name: getNameResolver(assetType)
