@@ -1,11 +1,9 @@
-'use strict'
-
 const path = require('path')
-const webpack = require('webpack')
+const { DllPlugin, DefinePlugin } = require('webpack')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const config = require('./config/dll.conf')
 
-module.exports = {
+const dllConfig = {
   mode: 'production',
   entry: {
     vendor: [ 'buffer', 'crypto', ...config.modules ]
@@ -30,10 +28,20 @@ module.exports = {
       threshold: 10240,
       minRatio: 0.8
     }),
-    new webpack.DllPlugin({
+    new DllPlugin({
       name: '[name]_[chunkhash:8]_dll',
       path: path.join(config.output, '[name].manifest.json'),
       context: __dirname
     })
   ]
 }
+
+if (process.argv.includes('--dev')) {
+  dllConfig.plugins.push(
+    new DefinePlugin({
+      'process.env.NODE_ENV': '"development"'
+    })
+  )
+}
+
+module.exports = dllConfig

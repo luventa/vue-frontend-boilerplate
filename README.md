@@ -109,7 +109,9 @@ npm run client:win64
       ...
     </style>
     ```
-
+> Vue validation is removed by default. You can execute command `npm run dll -- --dev` to get it back.
+  * It is useful for identifying potential code issue but not essential.
+    Remember, you have to run `npm run dll` before production release, otherwise it will affect performance.
 
 #  Unit Testing
 
