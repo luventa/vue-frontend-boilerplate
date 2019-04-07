@@ -4,7 +4,8 @@ const path = require('path')
 const { dependencies } = require('../../package.json')
 const whiteList = [
   'animate.css',
-  'hover.css'
+  'hover.css',
+  'core-js'
 ]
 
 const moduleMap = {

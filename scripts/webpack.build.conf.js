@@ -104,6 +104,7 @@ if (config.env.target === 'electron-renderer') {
           ['@babel/preset-env', {
             modules: false,
             useBuiltIns: 'usage',
+            corejs: 2,
             targets: {
               browsers: [ '> 1%', 'last 2 versions', 'ie >= 8' ]
             }
