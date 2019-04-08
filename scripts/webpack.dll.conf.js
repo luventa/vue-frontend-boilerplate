@@ -1,5 +1,5 @@
 const path = require('path')
-const { DllPlugin, DefinePlugin } = require('webpack')
+const { DllPlugin, DefinePlugin, ContextReplacementPlugin } = require('webpack')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const config = require('./config/dll.conf')
 
@@ -17,6 +17,9 @@ const dllConfig = {
     hints: false
   },
   plugins: [
+    /* eslint-disable no-useless-escape */
+    new ContextReplacementPlugin(/moment[\/\\]locale$/, /en|zh/),
+    /* eslint-enable no-useless-escape */
     new CompressionWebpackPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',

@@ -1,6 +1,6 @@
 import path from 'path'
 import config from './config'
-import { ContextReplacementPlugin, DllReferencePlugin } from 'webpack'
+import { DllReferencePlugin } from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
 import { resolveAssetRules } from './utils/asset'
@@ -74,9 +74,6 @@ const baseConfig = {
         removeComments: true
       }
     }),
-    /* eslint-disable no-useless-escape */
-    new ContextReplacementPlugin(/moment[\/\\]locale$/, /en|zh/),
-    /* eslint-enable no-useless-escape */
     new DllReferencePlugin({
       context: __dirname,
       manifest: vendorManifest

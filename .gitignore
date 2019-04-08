@@ -17,6 +17,5 @@ thumbs.db
 ### EXT ###
 .stylelintcache
 coverage
-yarn.lock
 package-lock.json
 src/static/dll/
