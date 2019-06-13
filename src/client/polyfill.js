@@ -4,7 +4,7 @@
 // So instead of using option 'include' or 'useBuiltIns: entry', we have to manually add some here
 
 // Some UI toolkit (eg. iview) uses this without shim
-import 'core-js/modules/es6.string.includes'
+import 'core-js/modules/es.string.includes'
 // https://github.com/babel/babel/pull/7646 resolved.
-import 'core-js/modules/es6.promise'
-import 'core-js/modules/es7.promise.finally'
+import 'core-js/modules/es.promise'
+import 'core-js/modules/es.promise.finally'

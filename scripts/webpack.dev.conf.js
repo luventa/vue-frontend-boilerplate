@@ -38,7 +38,7 @@ const clientConfig = {
               ['@babel/preset-env', {
                 modules: false,
                 useBuiltIns: 'usage',
-                corejs: 2,
+                corejs: 3,
                 targets: {
                   browsers: [ '> 1%', 'last 2 versions', 'ie >= 10' ]
                 }

@@ -54,7 +54,7 @@
   "dependencies": {
     "animate.css": "^3.7.0",
     "axios": "^0.18.0",
-    "core-js": "2",
+    "core-js": "^3.1.3",
     "hover.css": "^2.3.2",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
@@ -68,7 +68,6 @@
     "@babel/core": "^7.2.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/register": "^7.0.0",
     "@babel/runtime": "^7.2.0",
