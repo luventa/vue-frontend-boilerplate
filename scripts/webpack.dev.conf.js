@@ -38,12 +38,7 @@ const clientConfig = {
               ['@babel/preset-env', {
                 modules: false,
                 useBuiltIns: 'usage',
-                corejs: 3,
-                targets: {
-                  browsers: [ '> 1%', 'last 2 versions', 'ie >= 10' ]
-                }
-                // or only develop with modern browser
-                // targets: { esmodules: true }
+                corejs: 3
               }]
             ],
             plugins: [
