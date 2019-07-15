@@ -14,7 +14,10 @@ const createWindow = () => {
     width: width,
     minHeight: 768,
     minWidth: 1024,
-    frame: isDev
+    frame: isDev,
+    webPreferences: {
+      nodeIntegration: true
+    }
   })
 
   mainWindow.loadURL(winURL)
