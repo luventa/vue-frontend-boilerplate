@@ -41,6 +41,11 @@ const app = {
         get () {
           return app
         }
+      },
+      _isElectron: {
+        get () {
+          return true
+        }
       }
     })
   }

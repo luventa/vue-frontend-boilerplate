@@ -11,6 +11,11 @@ const app = {
         get () {
           return electron
         }
+      },
+      _isElectron: {
+        get () {
+          return true
+        }
       }
     })
   }
@@ -18,12 +23,4 @@ const app = {
 
 export default Vue => {
   Vue.use(app)
-
-  Object.defineProperties(Vue.prototype, {
-    _isElectron: {
-      get () {
-        return true
-      }
-    }
-  })
 }
