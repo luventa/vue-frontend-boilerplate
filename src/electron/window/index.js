@@ -1,10 +1,8 @@
 import { BrowserWindow } from 'electron'
 import url from './url'
 import store from '../store'
-import cache from './cache'
+import windows from './cache'
 import { registerEventHandlers } from './handlers'
-
-let { mainWindow } = cache
 
 // Default options for creating new window
 const DEFAULT_OPTIONS = {
@@ -18,11 +16,17 @@ const DEFAULT_OPTIONS = {
 export const createMainWindow = () => {
   let { width, height } = store.get('windowBounds')
   let options = Object.assign({ width, height }, DEFAULT_OPTIONS)
+  let window = windows.main = new BrowserWindow(options)
 
-  mainWindow = new BrowserWindow(options)
+  window.loadURL(url)
+  registerEventHandlers(window)
 
-  mainWindow.loadURL(url)
-  registerEventHandlers(mainWindow)
+  return window
+}
 
-  return mainWindow
+/**
+ * Restore all window instances
+ */
+export const restoreWindows = () => {
+  createMainWindow()
 }
