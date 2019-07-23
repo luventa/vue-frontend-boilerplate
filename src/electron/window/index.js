@@ -27,6 +27,6 @@ export const createMainWindow = () => {
 /**
  * Restore all window instances
  */
-export const restoreWindows = () => {
+export const initializeWindows = () => {
   createMainWindow()
 }

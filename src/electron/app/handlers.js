@@ -1,5 +1,5 @@
 import { app } from 'electron'
-import { restoreWindows } from '../window'
+import { initializeWindows } from '../window'
 import { registerDebugShortcuts } from './shortcuts'
 import windows from '../window/cache'
 
@@ -22,7 +22,7 @@ export const onReady = () => {
   if (process.env.NODE_ENV !== 'production') {
     registerDebugShortcuts()
   }
-  restoreWindows()
+  initializeWindows()
 }
 
 /**
@@ -42,6 +42,6 @@ export const onAllClosed = () => {
  */
 export const onActivated = () => {
   if (windows.main === null) {
-    restoreWindows()
+    initializeWindows()
   }
 }
