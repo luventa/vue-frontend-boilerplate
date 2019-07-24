@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 
 export const processLog = (proc, data) => {
-  let spliter = new Array((19 - proc.length) + 1).join('-')
+  const spliter = new Array((19 - proc.length) + 1).join('-')
   let log = chalk.yellow.bold(`${spliter} ${proc} Process ${spliter} \n\n`)
 
   if (typeof data === 'object') {
@@ -12,7 +12,7 @@ export const processLog = (proc, data) => {
       chunks: false,
       chunkModules: false,
       warnings: false,
-      excludeAssets: [/(node_modules|static|bin)/, /\.(map|hot-update)(\?.*)?$/,]
+      excludeAssets: [/(node_modules|static|bin)/, /\.(map|hot-update)(\?.*)?$/]
     }).split(/\r?\n/).forEach(line => {
       log += `  ${line}\n`
     })

@@ -9,7 +9,7 @@ const assetsSubDirectory = env.is_dev
 export const resolveAssets = _path => path.posix.join(assetsSubDirectory, _path)
 
 export const getNameResolver = (subPath, hashMode = '[hash:7]', ext = '[ext]') => {
-  let subDirectory = subPath ? `${subPath}/` : ''
+  const subDirectory = subPath ? `${subPath}/` : ''
 
   return file => {
     if (env.is_web) {
@@ -24,8 +24,8 @@ export const getNameResolver = (subPath, hashMode = '[hash:7]', ext = '[ext]') =
 
 export const resolveAssetRules = assetsMap => (
   Object.keys(assetsMap).map(assetType => {
-    let test = { test: assetsMap[assetType] }
-    let baseRule = {
+    const test = { test: assetsMap[assetType] }
+    const baseRule = {
       loader: env.is_web ? 'url-loader' : 'file-loader',
       options: {
         limit: 10000,
@@ -49,7 +49,7 @@ export const resolveAssetRules = assetsMap => (
 )
 
 export const resolveFileName = (fileType, hashMode) => {
-  let resolver = getNameResolver(fileType, hashMode, fileType)
+  const resolver = getNameResolver(fileType, hashMode, fileType)
 
   return resolver()
 }

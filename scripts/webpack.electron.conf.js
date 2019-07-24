@@ -63,7 +63,7 @@ const electronConfig = {
     new DefinePlugin({
       'process.env': {
         NODE_ENV: `'${config.env.node_env}'`,
-        DEV_PORT:  config.env.is_dev ? `${config.dev.port}` : null,
+        DEV_PORT: config.env.is_dev ? `${config.dev.port}` : null,
         APP_UPDATER: !config.env.is_dev ? `${APP_UPDATER}` : null
       }
     })
@@ -73,6 +73,7 @@ const electronConfig = {
 if (config.env.is_dev) {
   electronConfig.plugins.push(
     new DefinePlugin({
+      /* eslint-disable */
       '__static': `"${config.source.static.replace(/\\/g, '\\\\')}"`
     })
   )

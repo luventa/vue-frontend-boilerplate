@@ -44,7 +44,7 @@ const clientConfig = {
             plugins: [
               '@babel/plugin-syntax-dynamic-import'
             ],
-            ignore: [ 'node_modules' ]
+            ignore: ['node_modules']
           }
         }
       },
@@ -104,6 +104,7 @@ if (!config.env.is_web) {
   clientConfig.output.libraryTarget = 'commonjs2'
   clientConfig.plugins.push(
     new DefinePlugin({
+      /* eslint-disable */
       '__static': `"${config.source.static.replace(/\\/g, '\\\\')}"`
     })
   )

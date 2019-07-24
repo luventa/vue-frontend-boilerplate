@@ -79,8 +79,8 @@ if (config.env.target === 'electron-renderer') {
             targets: { esmodules: true }
           }]
         ],
-        plugins: [ '@babel/plugin-syntax-dynamic-import' ],
-        ignore: [ 'node_modules' ]
+        plugins: ['@babel/plugin-syntax-dynamic-import'],
+        ignore: ['node_modules']
       }
     }
   })
@@ -107,8 +107,8 @@ if (config.env.target === 'electron-renderer') {
             corejs: 3
           }]
         ],
-        plugins: [ '@babel/plugin-syntax-dynamic-import' ],
-        ignore: [ 'node_modules' ]
+        plugins: ['@babel/plugin-syntax-dynamic-import'],
+        ignore: ['node_modules']
       }
     }
   })

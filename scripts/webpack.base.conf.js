@@ -16,14 +16,14 @@ const baseConfig = {
   target: config.env.target,
   resolve: {
     alias: {
-      'vue': 'vue/dist/vue.esm.js',
+      vue: 'vue/dist/vue.esm.js',
       '@': config.source.client,
       '@store': path.resolve(config.source.client, 'store'),
       '@comp': path.resolve(config.source.client, 'components'),
       '@view': path.resolve(config.source.client, 'views')
     },
     extensions: ['.js', '.vue', '.json', '.css', '.node'],
-    modules: [ path.resolve('node_modules') ]
+    modules: [path.resolve('node_modules')]
   },
   node: {
     setImmediate: false

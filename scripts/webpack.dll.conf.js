@@ -6,7 +6,7 @@ const config = require('./config/dll.conf')
 const dllConfig = {
   mode: 'production',
   entry: {
-    vendor: [ 'buffer', 'crypto', ...config.modules ]
+    vendor: ['buffer', 'crypto', ...config.modules]
   },
   output: {
     path: config.output,

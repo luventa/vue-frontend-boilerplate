@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import del from 'del'
 import Multispinner from 'multispinner'
 import config from './config'
@@ -7,7 +6,7 @@ import { processLog } from './utils/logger'
 import { compile } from './utils/compiler'
 
 const results = Array.apply(null)
-const tasks = config.env.target !== 'web' ? ['electron', 'client'] : [ 'client' ]
+const tasks = config.env.target !== 'web' ? ['electron', 'client'] : ['client']
 const spinners = new Multispinner(tasks, {
   preText: 'packing',
   postText: 'process'

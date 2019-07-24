@@ -92,7 +92,12 @@ const serverHotReload = () => {
   const watcher = require('chokidar').watch(config.source.server)
 
   watcher.on('ready', () => {
-    watcher.on('all', (err, file) => {          
+    watcher.on('all', (err, file) => {
+      if (err) {
+        console.error(err)
+        return
+      }
+
       if (config.dev.hotApiRegex.test(file)) {
         console.log(chalk.yellow('> Reloading hot modules of server... \n'))
         Object.keys(require.cache).forEach(id => {
@@ -106,7 +111,6 @@ const serverHotReload = () => {
 
 const launchElectron = () => {
   const electron = require('electron')
-  
   console.log('> Launching Electron')
   electronProcess = spawn(electron, ['--inspect=5858', '.'])
 
@@ -140,5 +144,3 @@ if (config.env.is_web) {
     console.error(err)
   })
 }
-
-

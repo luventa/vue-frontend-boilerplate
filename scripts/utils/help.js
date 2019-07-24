@@ -1,4 +1,4 @@
-import chalk from'chalk'
+import chalk from 'chalk'
 import { description } from '../../package.json'
 
 console.log([
