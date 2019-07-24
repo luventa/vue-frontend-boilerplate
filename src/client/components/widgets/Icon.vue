@@ -20,7 +20,7 @@ export default {
       default: 'weicon'
     },
     size: {
-      type: [ String, Number ],
+      type: [String, Number],
       default: 14
     },
     color: {
@@ -35,14 +35,14 @@ export default {
 
   computed: {
     classes () {
-      return [ iconPrefix ]
+      return [iconPrefix]
     },
     styles () {
-      let size = `${this.size}px`
+      const size = `${this.size}px`
       return { height: size, width: size }
     },
     iStyles () {
-      let iconSize = `${this.size * this.zoom}px`
+      const iconSize = `${this.size * this.zoom}px`
       return { 'font-size': iconSize, 'line-height': iconSize }
     }
   },

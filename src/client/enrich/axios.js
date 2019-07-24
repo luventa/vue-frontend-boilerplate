@@ -7,7 +7,7 @@ export const httpAgent = axios
 export const httpsAgent = axios.create()
 httpsAgent.interceptors.request.use(request => {
   console.log('asfasdasdasd', process.env.NODE_ENV, request.data)
-  let origin = request.data
+  const origin = request.data
 
   if (origin !== null) {
     request.data = {

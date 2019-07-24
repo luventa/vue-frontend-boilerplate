@@ -20,9 +20,9 @@ const DEFAULT_OPTIONS = {
  */
 export const createWindow = options => {
   console.log('Creating window', options)
-  let { name, url, sizeType, width, height, x, y } = options
+  const { name, url, sizeType, width, height, x, y } = options
   /** @type {BrowserWindow} */
-  let existWindow = windows[name]
+  const existWindow = windows[name]
 
   if (existWindow) {
     existWindow.restore()
@@ -30,8 +30,8 @@ export const createWindow = options => {
     return existWindow
   }
 
-  let opts = { ...DEFAULT_OPTIONS, width, height, x, y }
-  let window = windows[name] = new BrowserWindow(opts)
+  const opts = { ...DEFAULT_OPTIONS, width, height, x, y }
+  const window = windows[name] = new BrowserWindow(opts)
 
   window._name = name
   window._sizeType = sizeType
@@ -42,17 +42,17 @@ export const createWindow = options => {
 }
 
 export const createMainWindow = () => {
-  let { width, height } = store.get('windows.main')
+  const { width, height } = store.get('windows.main')
   console.log('Main window: width is', width, 'height is', height)
   return createWindow({ name: 'main', url, width, height })
 }
 
 export const createChildWindow = opts => {
   console.log('opts', opts)
-  let { name, url, category, options } = opts
-  let rect = category && store.get(`windows.${category}`)
+  const { name, url, category, options } = opts
+  const rect = category && store.get(`windows.${category}`)
   console.log('sizeOptions', rect)
-  let location = store.get(`windows.${name}`)
+  const location = store.get(`windows.${name}`)
   console.log('location', location)
 
   return createWindow({ name, url, ...options, ...rect, ...location })

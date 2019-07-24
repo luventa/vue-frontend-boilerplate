@@ -7,7 +7,7 @@ export default {
   name: 'App',
 
   mounted () {
-    let env = process.env
+    const env = process.env
     console.log('Current env:', this._get(env, 'NODE_ENV'))
     console.log('Running with Electron', !!this._isElectron)
   }

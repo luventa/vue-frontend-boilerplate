@@ -10,7 +10,7 @@ export default {
 
   props: {
     to: {
-      type: [ String, Object ],
+      type: [String, Object],
       required: true
     },
     type: {
@@ -28,8 +28,8 @@ export default {
       }
 
       if (this.type === 'window') {
-        let { href, route } = this.$router.resolve(this.to)
-        let url = `${location.protocol}//${location.host}/${href}`
+        const { href, route } = this.$router.resolve(this.to)
+        const url = `${location.protocol}//${location.host}/${href}`
         if (!this._isElectron) {
           /* eslint-disable*/
           window.open('javascript:window.name;', `<script>location.replace("${url}")<\/script>`)

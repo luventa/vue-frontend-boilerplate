@@ -10,7 +10,7 @@ export const STATES = {
 }
 
 export const validateUserToken = async token => {
-  let res = await httpsAgent.post(VALIDATE_USER_TOKEN, token)
+  const res = await httpsAgent.post(VALIDATE_USER_TOKEN, token)
 
   if (STATES.SUCCESS === res.data.rtnCode) {
     return true

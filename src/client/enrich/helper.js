@@ -6,9 +6,9 @@ import _ from 'lodash'
 import moment from 'moment'
 
 const lodashFn = {
-  '_get': _.get,
-  '_merge': _.merge,
-  '_trim': _.trim
+  _get: _.get,
+  _merge: _.merge,
+  _trim: _.trim
 }
 
 export default {

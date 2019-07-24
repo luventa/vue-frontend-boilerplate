@@ -1,8 +1,8 @@
 import { emptyFunction } from '../utils/shared'
 
 const mockApp = () => {
-  let clientWindow = Object.create(null)
-  let windowApiList = [
+  const clientWindow = Object.create(null)
+  const windowApiList = [
     'unmaximize', 'maximize', 'minimize', 'close',
     'setMinimumSize', 'setSize', 'getSize',
     'setResizablle', 'setMaximizable', 'center'
@@ -12,8 +12,8 @@ const mockApp = () => {
   })
 
   clientWindow.getSize = () => {
-    let rect = document.getElementById('app').getBoundingClientRect()
-    return [ rect.height, rect.height ]
+    const rect = document.getElementById('app').getBoundingClientRect()
+    return [rect.height, rect.height]
   }
 
   return {
@@ -41,7 +41,7 @@ const app = {
     if (this.installed) return
 
     this.installed = true
-    let app = mockApp()
+    const app = mockApp()
 
     Object.defineProperties(Vue.prototype, {
       $app: {

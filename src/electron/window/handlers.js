@@ -22,15 +22,15 @@ export const registerCommonHandlers = instance => {
   })
 
   instance.on('resize', () => {
-    let { width, height } = instance.getBounds()
-    let storeKey = instance._category ? `windows.${instance._category}` : `windows.${instance._name}`
+    const { width, height } = instance.getBounds()
+    const storeKey = instance._category ? `windows.${instance._category}` : `windows.${instance._name}`
     console.log('Window', instance._name, 'with rect', width, height)
     store.set(storeKey, { width, height })
     console.log(store.get(storeKey), 'stored')
   })
 
   instance.on('move', () => {
-    let { x, y } = instance.getBounds()
+    const { x, y } = instance.getBounds()
     console.log('Window', instance._name, 'with location', x, y)
     store.set(`windows.${instance._name}`, { x, y })
     console.log(store.get(`windows.${instance._name}`), 'stored')

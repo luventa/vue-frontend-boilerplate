@@ -5,7 +5,7 @@ import windows from '../window/cache'
 
 export const initializeIpc = () => {
   ipcMain.on('open-window', (event, opts) => {
-    let winHash = sha1().update(opts.url).digest('hex')
+    const winHash = sha1().update(opts.url).digest('hex')
     console.log(opts)
     createChildWindow({
       ...opts,

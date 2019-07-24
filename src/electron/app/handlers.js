@@ -12,7 +12,7 @@ import windows from '../window/cache'
  */
 export const onReady = () => {
   if (process.env.NODE_ENV === 'development') {
-    let installExtension = require('electron-devtools-installer')
+    const installExtension = require('electron-devtools-installer')
     installExtension.default(installExtension.VUEJS_DEVTOOLS).then(() => {
       console.log('Vue devtool is ready')
     }).catch(e => {
