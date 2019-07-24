@@ -9,7 +9,7 @@ Vue.use(Router)
 const lazyLoad = (name, index = false) => () => import(`@view/${name}${index ? '/index' : ''}.vue`)
 
 export default new Router({
-  base: process.env.ROUTE_BASE,
+  base: process.env.TARGET !== 'web' ? process.env.ROUTE_BASE : '/',
   mode: process.env.TARGET !== 'web' ? 'hash' : process.env.ROUTE_MODE,
   linkActiveClass: 'is-active',
   scrollBehavior: () => ({ y: 0 }),

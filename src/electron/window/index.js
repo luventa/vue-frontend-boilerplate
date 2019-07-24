@@ -1,5 +1,5 @@
 import { BrowserWindow } from 'electron'
-import url from './url'
+import { baseUrl, getUrl } from './url'
 import store from '../store'
 import windows from './cache'
 import { registerCommonHandlers } from './handlers'
@@ -9,7 +9,8 @@ const DEFAULT_OPTIONS = {
   height: 768,
   width: 1024,
   webPreferences: {
-    nodeIntegration: true
+    nodeIntegration: true,
+    webSecurity: false
   }
 }
 
@@ -44,18 +45,24 @@ export const createWindow = options => {
 export const createMainWindow = () => {
   const { width, height } = store.get('windows.main')
   console.log('Main window: width is', width, 'height is', height)
-  return createWindow({ name: 'main', url, width, height })
+  return createWindow({ name: 'main', url: baseUrl, width, height })
 }
 
 export const createChildWindow = opts => {
   console.log('opts', opts)
-  const { name, url, category, options } = opts
+  const { name, url, href, category, options } = opts
   const rect = category && store.get(`windows.${category}`)
   console.log('sizeOptions', rect)
   const location = store.get(`windows.${name}`)
   console.log('location', location)
 
-  return createWindow({ name, url, ...options, ...rect, ...location })
+  return createWindow({
+    name,
+    url: url || getUrl(href),
+    ...options,
+    ...rect,
+    ...location
+  })
 }
 
 /**

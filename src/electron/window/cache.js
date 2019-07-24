@@ -3,9 +3,10 @@ const windows = Object.create(null)
 
 export const closeAllWindow = () => {
   Object.keys(windows).forEach(name => {
+    const instance = windows[name]
     console.log(name)
-    if (windows[name]) {
-      windows[name].close()
+    if (instance && !instance.isDestroyed()) {
+      instance.close()
     }
   })
 }

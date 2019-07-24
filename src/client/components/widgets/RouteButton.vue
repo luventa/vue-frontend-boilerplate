@@ -29,12 +29,13 @@ export default {
 
       if (this.type === 'window') {
         const { href, route } = this.$router.resolve(this.to)
-        const url = `${location.protocol}//${location.host}/${href}`
+
         if (!this._isElectron) {
+          const url = `${location.protocol}//${location.host}/${href}`
           /* eslint-disable*/
           window.open('javascript:window.name;', `<script>location.replace("${url}")<\/script>`)
         } else {
-          this.$app.ipcRenderer.send('open-window', { name: route.name, url, ...this.to.window })
+          this.$app.ipcRenderer.send('open-window', { name: route.name, href, ...this.to.window })
         }        
       } else if (this.type === 'external') {
         this.$app.shell.openExternal(this.to)
