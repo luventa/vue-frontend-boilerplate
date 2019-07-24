@@ -1,5 +1,5 @@
 import store from '../store'
-import { closeAllWindow, clearCache } from './cache'
+import windows, { closeAllWindow, clearCache } from './cache'
 
 /**
  * Register common handlers for window.
@@ -8,6 +8,10 @@ import { closeAllWindow, clearCache } from './cache'
 export const registerCommonHandlers = instance => {
   instance.once('ready-to-show', () => {
     instance.show()
+  })
+
+  instance.on('focus', () => {
+    windows.current = instance
   })
 
   instance.on('closed', () => {
