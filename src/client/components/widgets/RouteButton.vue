@@ -12,12 +12,33 @@ export default {
     to: {
       type: [ String, Object ],
       required: true
+    },
+    type: {
+      type: String,
+      validator: val => (val === null || ['window', 'external'].indexOf(val) > -1),
+      default: null
     }
   },
 
   methods: {
     handleClick () {
-      this.$router.push(this.to)
+      if (this.type === null) {
+        this.$router.push(this.to)
+        return
+      }
+
+      if (this.type === 'window') {
+        let { href, route } = this.$router.resolve(this.to)
+        let url = `${location.protocol}//${location.host}/${href}`
+        if (!this._isElectron) {
+          /* eslint-disable*/
+          window.open('javascript:window.name;', `<script>location.replace("${url}")<\/script>`)
+        } else {
+          this.$app.ipcRenderer.send('open-window', { name: route.name, url, ...this.to.window })
+        }        
+      } else if (this.type === 'external') {
+        this.$app.shell.openExternal(this.to)
+      }
     }
   }
 }

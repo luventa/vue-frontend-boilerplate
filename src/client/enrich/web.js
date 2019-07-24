@@ -19,7 +19,14 @@ const mockApp = () => {
   return {
     remote: { getCurrentWindow: () => clientWindow },
     ipcRenderer: {
-      on: emptyFunction,
+      on: (channel, listener) => {
+        if (!(listener instanceof Function)) {
+          return null
+        }
+        const handler = e => listener(e.key, e.newValue)
+        window.addEventListener('storage', handler)
+        return handler
+      },
       send: emptyFunction,
       removeAllListeners: emptyFunction
     },
@@ -44,7 +51,7 @@ const app = {
       },
       _isElectron: {
         get () {
-          return true
+          return false
         }
       }
     })

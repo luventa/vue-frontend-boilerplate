@@ -1,22 +1,10 @@
 <template>
-  <div id="app">
-    <AppHeader />
-    <AppMain />
-    <AppFooter />
-  </div>
+  <router-view />
 </template>
 
 <script>
-import { AppHeader, AppMain, AppFooter } from '@comp/layout'
-
 export default {
   name: 'App',
-
-  components: {
-    AppHeader,
-    AppMain,
-    AppFooter
-  },
 
   mounted () {
     let env = process.env

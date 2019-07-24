@@ -1,10 +1,15 @@
 // Cheap cache for browser window instances
-const cache = Object.create(null)
+const windows = Object.create(null)
 
-// mainWindow
-cache.main = null
+export const closeAllWindow = () => {
+  Object.keys(windows).forEach(name => {
+    console.log(name)
+    if (windows[name]) {
+      windows[name].close()
+    }
+  })
+}
 
-// child windows
-cache.children = []
+export const clearCache = name => delete windows[name]
 
-export default cache
+export default windows

@@ -2,7 +2,9 @@ import Store from 'electron-store'
 
 const store = new Store({
   defaults: {
-    windowBounds: { width: 340, height: 550 },
+    windows: {
+      main: { width: 340, height: 550 }
+    },
     user: {
       name: null,
       title: null,

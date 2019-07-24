@@ -8,6 +8,9 @@
       <RouteButton to="/httpDemo">
         HttpDemo
       </RouteButton>
+      <RouteButton to="/task/list">
+        TaskList
+      </RouteButton>
       <RouteButton to="/404">
         404
       </RouteButton>
