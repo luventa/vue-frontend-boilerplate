@@ -8,10 +8,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-
 export default {
   name: 'AppMain',
-
   computed: mapGetters({
     _trace: '_trace'
   })

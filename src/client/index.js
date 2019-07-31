@@ -10,13 +10,13 @@ import router from './router'
 import store from './store'
 import enrich from './enrich'
 import enrichWeb from './enrich/web'
+import 'golden-layout/src/css/goldenlayout-light-theme.css'
 
 enrich(Vue)
 enrichWeb(Vue)
 
 Vue.config.devtools = process.env.NODE_ENV !== 'production'
 Vue.config.productionTip = false
-
 sync(store, router)
 const { dispatch } = store
 
