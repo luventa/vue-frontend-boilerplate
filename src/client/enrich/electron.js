@@ -16,6 +16,11 @@ const app = {
         get () {
           return true
         }
+      },
+      $ipc: {
+        get () {
+          return electron.ipcRenderer
+        }
       }
     })
   }

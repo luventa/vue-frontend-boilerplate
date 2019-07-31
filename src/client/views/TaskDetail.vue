@@ -48,7 +48,7 @@ export default {
       // mock submit request to backend
       setTimeout(() => {
         this.time = (new Date()).getTime()
-        this.$app.ipcRenderer.send('task-saved', {
+        this.$ipc.send('task-saved', {
           title: this.title,
           detail: this.detail,
           time: this.time

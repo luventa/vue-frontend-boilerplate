@@ -23,12 +23,43 @@ const mockApp = () => {
         if (!(listener instanceof Function)) {
           return null
         }
-        const handler = e => listener(e.key, e.newValue)
+
+        if (!(window._ipcHandlers instanceof Array)) {
+          window._ipcHandlers = []
+        }
+
+        const handler = e => {
+          if (e.newValue) {
+            listener(channel, JSON.parse(e.newValue))
+          }
+        }
+
         window.addEventListener('storage', handler)
+        window._ipcHandlers.push(handler)
+
         return handler
       },
-      send: emptyFunction,
-      removeAllListeners: emptyFunction
+      send: (channel, args) => {
+        if (localStorage.getItem(channel)) {
+          localStorage.removeItem(channel)
+        }
+        localStorage.setItem(channel, JSON.stringify(args))
+      },
+      removeListener: (channel, listener) => {
+        window.removeEventListener('storage', listener)
+      },
+      removeAllListeners: () => {
+        if (!(window._ipcHandlers instanceof Array)) {
+          window._ipcHandlers = []
+          return
+        }
+
+        window._ipcHandlers.forEach(handler => {
+          window.removeEventListener('storage', handler)
+        })
+
+        window._ipcHandlers.length = 0
+      }
     },
     shell: {
       openExternal: url => window.open(url)
@@ -52,6 +83,11 @@ const app = {
       _isElectron: {
         get () {
           return false
+        }
+      },
+      $ipc: {
+        get () {
+          return app.ipcRenderer
         }
       }
     })
