@@ -5,7 +5,9 @@ const { dependencies } = require('../../package.json')
 const whiteList = [
   'animate.css',
   'hover.css',
-  'core-js'
+  'core-js',
+  'vue-golden-layout',
+  'vue-property-decorator'
 ]
 
 const moduleMap = {

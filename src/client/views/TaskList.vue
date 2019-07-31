@@ -47,12 +47,13 @@ export default {
   },
 
   mounted () {
-    this.$ipc.on('refresh-task-list', this.refreshList)
+    // Demo of ipc.
+    this.$app.ipcRenderer.on('refresh-task-list', this.refreshList)
   },
 
   methods: {
-    refreshList (key, value) {
-      console(key, value)
+    refreshList () {
+      console.log('Fake process of refreshing list')
     },
     addTask (e) {
       if (!this.newTask.title) {
