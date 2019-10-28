@@ -46,7 +46,8 @@ const baseConfig = {
       },
       {
         test: /\.json$/,
-        use: 'json-loader'
+        use: 'json-loader',
+        include: config.source.root
       },
       // Generate rules of assets, for using url-loader
       // For importing assets inside <template> of .vue files,
