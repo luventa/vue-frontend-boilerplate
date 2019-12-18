@@ -9,7 +9,18 @@
 
 <script>
 export default {
-  name: 'HomePage'
+  name: 'HomePage',
+
+  async mounted () {
+    console.log('test', this.$app.store.setPassword)
+    try {
+      await this.$app.store.setPassword('test', 'u1', 'p1')
+      const password = await this.$app.store.getPassword('test', 'u1')
+      console.log('Got password:', password)
+    } catch (err) {
+      console.error(err)
+    }
+  }
 }
 </script>
 

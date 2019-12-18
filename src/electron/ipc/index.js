@@ -2,6 +2,7 @@ import { ipcMain } from 'electron'
 import sha1 from 'hash.js/lib/hash/sha/1'
 import { createChildWindow } from '../window'
 import windows from '../window/cache'
+import initializeKeytarHandlers from './keytar'
 
 export const initializeIpc = () => {
   ipcMain.on('open-window', (event, opts) => {
@@ -18,4 +19,6 @@ export const initializeIpc = () => {
     // Now tell main window to refresh list.
     windows.main.webContents.send('refresh-task-list')
   })
+
+  initializeKeytarHandlers(ipcMain)
 }
