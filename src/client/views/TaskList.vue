@@ -56,7 +56,7 @@ export default {
     },
     addTask (e) {
       if (!this.newTask.title) {
-        this.$refs['title'].focus()
+        this.$refs.title.focus()
         return
       }
 
@@ -64,7 +64,7 @@ export default {
         ...this.newTask,
         time: (new Date()).getTime()
       })
-      this.$refs['title'].focus()
+      this.$refs.title.focus()
       this.clearNewTask()
     },
     clearNewTask () {

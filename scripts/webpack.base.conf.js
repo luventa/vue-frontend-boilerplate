@@ -33,7 +33,7 @@ const baseConfig = {
       {
         test: /\.(js|vue)$/,
         enforce: 'pre',
-        exclude: /node_modules/,
+        exclude: [/node_modules/, path.resolve(config.source.client, 'router/index.js')],
         include: config.source.client,
         loader: 'eslint-loader',
         options: {
