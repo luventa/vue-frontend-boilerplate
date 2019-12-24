@@ -52,7 +52,7 @@ export default {
 
   methods: {
     refreshList (key, value) {
-      console(key, value)
+      console.log(key, value)
     },
     addTask (e) {
       if (!this.newTask.title) {

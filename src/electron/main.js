@@ -1,11 +1,31 @@
-import { initializeApp } from './app'
-import { initializeIpc } from './ipc'
+import { initializeElectron, windows } from 'electron-suites'
 
-if (process.env.NODE_ENV === 'development') {
-  require('electron-debug')({ showDevTools: false }) // hide devtools for development by default
-} else {
-  global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
-}
-
-initializeApp()
-initializeIpc()
+initializeElectron({
+  env: {
+    root: __dirname,
+    mode: process.env.NODE_ENV,
+    port: process.env.DEV_PORT
+  },
+  app: {
+    devTool: 'VUEJS_DEVTOOLS',
+    events: {
+      activate: (event, hasVisibleWindows) => {
+        global.$logger.info('event', event)
+        global.$logger.info('hasVisibleWindows', hasVisibleWindows)
+      }
+    }
+  },
+  ipcEvents: {
+    'task-saved': (event, task) => {
+      global.$logger.info('Task saved:', task)
+      // Now tell main window to refresh list.
+      windows.main.webContents.send('refresh-task-list', 'haha')
+    }
+  },
+  updater: {
+    feedUrl: process.env.APP_UPDATER,
+    resources: {
+      product: 'http://localhost:2333/product.asar'
+    }
+  }
+})
