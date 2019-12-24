@@ -17,8 +17,8 @@ del.sync(['dist/*', 'build/*', '!.gitkeep'])
 spinners.on('success', () => {
   process.stdout.write('\x1B[2J\x1B[0f\n\n')
   results.forEach(result => processLog(result.proc, result.stats))
-  console.log(`> Webpack packing process completed`)
-  console.log(`> Start to build application`)
+  console.log('> Webpack packing process completed')
+  console.log('> Start to build application')
   if (process.env.MODE !== 'analyze') {
     process.exit()
   }
@@ -29,7 +29,7 @@ compile(clientConfig).then(stats => {
   spinners.success('client')
 }).catch(err => {
   spinners.error('client')
-  console.log(`\n  Error: failed to pack client`)
+  console.log('\n  Error: failed to pack client')
   console.error(`\n${err}\n`)
   process.exit(1)
 })
@@ -41,7 +41,7 @@ if (config.env.target !== 'web') {
     spinners.success('electron')
   }).catch(err => {
     spinners.error('electron')
-    console.log(`\n  Error: failed to pack electron`)
+    console.log('\n  Error: failed to pack electron')
     console.error(`\n${err}\n`)
     process.exit(1)
   })
