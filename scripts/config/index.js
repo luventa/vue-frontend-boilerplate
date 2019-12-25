@@ -37,6 +37,7 @@ module.exports = {
   },
   output: {
     root: path.resolve('dist'),
+    asar: path.resolve('dist/asar'),
     web: path.resolve('dist/web'),
     electron: path.resolve('dist/electron'),
     static: path.resolve('dist/static')
