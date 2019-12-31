@@ -33,11 +33,12 @@ module.exports = {
     electron: path.resolve('src/electron'),
     styleResources: path.resolve('src/client/style/global.scss'),
     server: path.resolve('src/server'),
-    static: path.resolve('src/static')
+    static: path.resolve('src/static'),
+    cache: path.resolve('cache')
   },
   output: {
     root: path.resolve('dist'),
-    asar: path.resolve('dist/asar'),
+    build: path.resolve('build'),
     web: path.resolve('dist/web'),
     electron: path.resolve('dist/electron'),
     static: path.resolve('dist/static')

@@ -1,6 +1,6 @@
 import koaStatic from 'koa-static'
 import koaMount from 'koa-mount'
 
-export default staticPath => {
-  return koaMount('/static', koaStatic(staticPath))
+export default (prefix, staticPath) => {
+  return koaMount(prefix, koaStatic(staticPath))
 }

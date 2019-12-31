@@ -6,6 +6,7 @@
   "license": "MIT",
   "main": "./dist/main.js",
   "scripts": {
+    "asar": "node scripts/mkasar.js",
     "start": "npm run help",
     "analyze": "cross-env NODE_ENV=production TARGET=web MODE=analyze node scripts/index.js",
     "clean": "rimraf dist build",
@@ -26,7 +27,6 @@
     "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src",
     "lint:style": "stylelint src/client/**/*.{vue,css,sass,scss} --cache --fix",
     "test": "npm run unit && npm run e2e",
-    "resource": "node scripts/mkasar.js",
     "package": "node scripts/mkpkg.js",
     "postinstall": "npm run dll"
   },
@@ -55,7 +55,6 @@
   "dependencies": {
     "animate.css": "^3.7.0",
     "axios": "^0.18.0",
-    "core-js": "^3.1.3",
     "hover.css": "^2.3.2",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
@@ -83,6 +82,7 @@
     "compression-webpack-plugin": "^2.0.0",
     "connect-history-api-fallback": "^1.5.0",
     "copy-webpack-plugin": "^4.6.0",
+    "core-js": "^3.6.1",
     "cross-env": "^5.2.0",
     "css-loader": "^2.0.1",
     "del": "^3.0.0",

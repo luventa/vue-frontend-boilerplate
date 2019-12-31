@@ -16,14 +16,31 @@ try {
   process.exit(0)
 }
 
+const modules = []
 const params = process.argv.slice(2)
-const asarFileName = path.resolve(config.output.asar, `${params.length > 0 ? params[0] : config.project}.asar`)
-const md5FileName = path.resolve(config.output.asar, 'package.json')
+const root = path.resolve(__dirname, '../')
+const asarFile = path.resolve(config.output.build, `${params.length > 0 ? params[0] : config.project}.asar`)
+const manifestFile = path.resolve(config.output.build, 'manifest.json')
+const collectModules = deps => {
+  if (!deps) return
 
-asar.createPackage(config.output.root, asarFileName).then(info => {
+  for (const dep in deps) {
+    const pattern = `node_modules/${dep}/**`
+    if (modules.includes(pattern)) {
+      return true
+    }
+    modules.push(pattern)
+    collectModules(require(`../node_modules/${dep}/package.json`).dependencies)
+  }
+}
+collectModules(manifest.dependencies)
+
+asar.createPackageWithOptions(root, asarFile, {
+  pattern: `/{dist/**,node_modules,${modules.join(',')}}`
+}).then(info => {
   console.log(chalk.green(`\n  Package contains ${info.bytesWritten} total bytes.`))
 
-  const stream = fs.createReadStream(asarFileName)
+  const stream = fs.createReadStream(asarFile)
   const md5Hash = crypto.createHash('md5')
 
   stream.on('data', data => {
@@ -36,8 +53,8 @@ asar.createPackage(config.output.root, asarFileName).then(info => {
       md5: md5Hash.digest('hex'),
       timestamp: (new Date()).getTime()
     }
-    fs.writeFileSync(md5FileName, JSON.stringify(info, null, 2))
-    console.log(chalk.green(`\n  Version info has been written to file ${md5FileName}`))
+    fs.writeFileSync(manifestFile, JSON.stringify(info, null, 2))
+    console.log(chalk.green(`\n  Version info has been written to file ${manifestFile}`))
   })
 }).catch(err => {
   console.log(chalk.red(`\n  Error occurs while creating asar package: ${err}`))

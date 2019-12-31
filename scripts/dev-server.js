@@ -35,7 +35,8 @@ const compileClient = () => {
     app.use(hotMiddleware(compiler))
 
     if (!config.dev.nodeServerEnabled) {
-      app.use(staticMiddleware(config.source.static))
+      app.use(staticMiddleware('/static', config.source.static))
+      app.use(staticMiddleware('/', config.source.cache))
     } else {
       console.log(chalk.yellow('> Registering server Api \n'))
       // registerApi(app)
