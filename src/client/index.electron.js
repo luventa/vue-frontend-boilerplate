@@ -6,7 +6,6 @@ import router from './router'
 import store from './store'
 import enrich from './enrich'
 import enrichElectron from './enrich/electron'
-// import { store as estore } from './enrich/estore'
 
 enrich(Vue)
 enrichElectron(Vue)

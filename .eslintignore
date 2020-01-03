@@ -1,3 +1,4 @@
+src/client/assets/fonts/**
 src/static/**/*.js
 src/ui/**
 test/unit/coverage/**
