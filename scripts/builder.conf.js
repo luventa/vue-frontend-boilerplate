@@ -20,7 +20,9 @@ const builderConfig = {
 if (env && env !== '--dir') {
   builderConfig.appId = `your.application.${env}`
   builderConfig.productName = `your-productName-${env}`
+  /* eslint-disable no-template-curly-in-string */
   builderConfig.artifactName = '${productName}_${version}.${ext}'
+  /* eslint-enable no-template-curly-in-string */
   builderConfig.publish = {
     provider: 'generic',
     url: env === 'production' ? 'https://your.app.com/resources/client' : 'https://your.app-stg.com/resources/client'
