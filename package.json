@@ -18,9 +18,9 @@
     "build:client": "cross-env NODE_ENV=testing TARGET=electron MODE=build node scripts/index.js",
     "dist": "cross-env NODE_ENV=production TARGET=web MODE=build node scripts/index.js",
     "dist:client": "cross-env NODE_ENV=production TARGET=electron MODE=build node scripts/index.js",
-    "client:unpack": "electron-builder --dir",
-    "client:win32": "electron-builder --win --ia32",
-    "client:win64": "electron-builder --win --x64",
+    "client:unpack": "electron-builder -c ./scripts/builder.conf.js --dir",
+    "client:test": "electron-builder -c ./scripts/builder.conf.js testing",
+    "client:publish": "electron-builder -c ./scripts/builder.conf.js production",
     "e2e": "npm run pack && mocha test/e2e",
     "help": "node ./scripts/help.js",
     "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src",
@@ -29,28 +29,6 @@
     "test": "npm run unit && npm run e2e",
     "package": "node scripts/mkpkg.js",
     "postinstall": "npm run dll"
-  },
-  "build": {
-    "productName": "vue-frontend-boilerplate",
-    "appId": "your.application.id",
-    "directories": {
-      "output": "build"
-    },
-    "files": [
-      "dist/**/*"
-    ],
-    "win": {
-      "icon": "src/electron/logo_256.png",
-      "target": [
-        {
-          "target": "portable",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
-      ]
-    }
   },
   "dependencies": {
     "animate.css": "^3.7.0",

@@ -1,17 +1,16 @@
-import path from 'path'
 import { DefinePlugin, LoaderOptionsPlugin } from 'webpack'
 import CompressionWebpackPlugin from 'compression-webpack-plugin'
 import merge from 'webpack-merge'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import config from './config'
+import { env, output, build, source as src } from './config'
 import baseConfig from './webpack.base.conf'
 import { resolveAssets, resolveFileName } from './utils/asset'
 
 const clientConfig = {
   output: {
-    path: config.output.root,
-    publicPath: config.build.assetsPublicPath,
+    path: output.root,
+    publicPath: build.assetsPublicPath,
     filename: resolveAssets('js/[name].[chunkhash].js'),
     chunkFilename: resolveAssets('js/[id].[chunkhash].js')
   },
@@ -42,7 +41,7 @@ const clientConfig = {
           {
             loader: 'sass-resources-loader',
             options: {
-              resources: config.source.styleResources
+              resources: src.styleResources
             }
           }
         ]
@@ -54,17 +53,22 @@ const clientConfig = {
       filename: resolveFileName('css', '[contenthash]')
     }),
     new DefinePlugin({
-      'process.env': config.env.is_prod
+      'process.env': env.is_prod
         ? require('./config/prod.env')
         : require('./config/test.env')
-    })
+    }),
+    new CopyWebpackPlugin([{
+      from: src.static,
+      to: output.static,
+      ignore: ['.*']
+    }])
   ]
 }
 
 // Separate config for electron and web
-if (config.env.target === 'electron-renderer') {
+if (env.target === 'electron-renderer') {
   clientConfig.output = {
-    path: config.output.root,
+    path: output.root,
     libraryTarget: 'commonjs2',
     filename: resolveFileName('js'),
     chunkFilename: resolveFileName('js')
@@ -84,15 +88,6 @@ if (config.env.target === 'electron-renderer') {
       }
     }
   })
-  clientConfig.plugins.push(
-    new CopyWebpackPlugin([
-      {
-        from: config.source.static,
-        to: path.resolve(config.output.root, 'static'),
-        ignore: ['.*']
-      }
-    ])
-  )
 } else {
   // Babel config for web app
   clientConfig.module.rules.push({
@@ -114,11 +109,6 @@ if (config.env.target === 'electron-renderer') {
   })
   // Static resource relocate and built resources minimize
   clientConfig.plugins.push(
-    new CopyWebpackPlugin([{
-      from: config.source.static,
-      to: config.output.static,
-      ignore: ['.*']
-    }]),
     new LoaderOptionsPlugin({
       minimize: true
     }),
@@ -127,7 +117,7 @@ if (config.env.target === 'electron-renderer') {
       algorithm: 'gzip',
       test: new RegExp(
         '\\.(' +
-        config.build.productionGzipExtensions.join('|') +
+        build.productionGzipExtensions.join('|') +
         ')$'
       ),
       threshold: 10240,

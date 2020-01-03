@@ -1,7 +1,7 @@
 import { DefinePlugin, HotModuleReplacementPlugin } from 'webpack'
 import StyleLintPlugin from 'stylelint-webpack-plugin'
 import merge from 'webpack-merge'
-import config from './config'
+import { env, dev, output, source as src } from './config'
 import baseConfig from './webpack.base.conf'
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 
@@ -12,7 +12,7 @@ const hmrOptions = {
   timeout: 20000,
   reload: true,
   quiet: true,
-  overlayWarnings: config.env.is_web
+  overlayWarnings: env.is_web
 }
 const hmrOptionString = Object.keys(hmrOptions).map(key => `${key}=${hmrOptions[key]}`).join('&')
 
@@ -23,9 +23,9 @@ Object.keys(baseConfig.entry).forEach(name => {
 const clientConfig = {
   devtool: '#cheap-module-source-map',
   output: {
-    path: config.output.root,
+    path: output.root,
     filename: '[name].js',
-    publicPath: config.dev.assetsPublicPath
+    publicPath: dev.assetsPublicPath
   },
   module: {
     rules: [
@@ -77,7 +77,7 @@ const clientConfig = {
             loader: 'sass-resources-loader',
             options: {
               sourceMap: true,
-              resources: config.source.styleResources
+              resources: src.styleResources
             }
           }
         ]
@@ -100,12 +100,12 @@ const clientConfig = {
 }
 
 // Separate config for electron and web
-if (!config.env.is_web) {
+if (!env.is_web) {
   clientConfig.output.libraryTarget = 'commonjs2'
   clientConfig.plugins.push(
     new DefinePlugin({
       /* eslint-disable */
-      '__static': `"${config.source.static.replace(/\\/g, '\\\\')}"`
+      '__static': `"${src.static.replace(/\\/g, '\\\\')}"`
     })
   )
 }

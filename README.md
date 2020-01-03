@@ -77,11 +77,11 @@ Pack for electron client
 # Unpacked client
 npm run client:unpack
 
-# Win32 application
-npm run client:win32
+# windows nsis for product testing
+npm run client:test
 
-# Win32 application
-npm run client:win64
+# windows nsis for product publishing
+npm run client:publish
 ```
 
 # Tips

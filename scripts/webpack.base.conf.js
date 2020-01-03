@@ -1,5 +1,5 @@
 import path from 'path'
-import config from './config'
+import { env, source as src } from './config'
 import { DllReferencePlugin } from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
@@ -8,19 +8,19 @@ import vendorManifest from '../src/static/dll/vendor.manifest.json'
 
 const baseConfig = {
   entry: {
-    app: config.env.is_web
+    app: env.is_web
       ? './src/client/index.js'
       : './src/client/index.electron.js'
   },
-  mode: config.env.mode,
-  target: config.env.target,
+  mode: env.mode,
+  target: env.target,
   resolve: {
     alias: {
       vue: 'vue/dist/vue.esm.js',
-      '@': config.source.client,
-      '@store': path.resolve(config.source.client, 'store'),
-      '@comp': path.resolve(config.source.client, 'components'),
-      '@view': path.resolve(config.source.client, 'views')
+      '@': src.client,
+      '@store': path.resolve(src.client, 'store'),
+      '@comp': path.resolve(src.client, 'components'),
+      '@view': path.resolve(src.client, 'views')
     },
     extensions: ['.js', '.vue', '.json', '.css', '.node'],
     modules: [path.resolve('node_modules')]
@@ -33,8 +33,8 @@ const baseConfig = {
       {
         test: /\.(js|vue)$/,
         enforce: 'pre',
-        exclude: [/node_modules/, path.resolve(config.source.client, 'router/index.js')],
-        include: config.source.client,
+        exclude: [/node_modules/, path.resolve(src.client, 'router/index.js')],
+        include: src.client,
         loader: 'eslint-loader',
         options: {
           formatter: require('eslint-friendly-formatter')
@@ -47,7 +47,7 @@ const baseConfig = {
       {
         test: /\.json$/,
         use: 'json-loader',
-        include: config.source.root
+        include: src.root
       },
       // Generate rules of assets, for using url-loader
       // For importing assets inside <template> of .vue files,
@@ -63,11 +63,11 @@ const baseConfig = {
   plugins: [
     new HtmlWebpackPlugin({
       appVersion: new Date().getTime(),
-      title: `${config.env.is_dev ? '[DEV]' : ''} Vue Frontend Boilerplate`,
+      title: `${env.is_dev ? '[DEV]' : ''} Vue Frontend Boilerplate`,
       filename: 'index.html',
       template: 'src/client/index.html',
       target: process.env.TARGET,
-      vendor: `${config.env.is_web ? '/' : ''}static/dll/${vendorManifest.name.replace(/_/g, '.')}.js`,
+      vendor: `${env.is_web ? '/' : ''}static/dll/${vendorManifest.name.replace(/_/g, '.')}.js`,
       inject: true,
       minify: {
         collapseWhitespace: true,
@@ -83,10 +83,10 @@ const baseConfig = {
   ]
 }
 
-if (!config.env.is_web) {
+if (!env.is_web) {
   baseConfig.node = {
-    __dirname: config.env.is_dev,
-    __filename: config.env.is_dev
+    __dirname: env.is_dev,
+    __filename: env.is_dev
   }
   baseConfig.module.rules.push({
     test: /\.node$/,

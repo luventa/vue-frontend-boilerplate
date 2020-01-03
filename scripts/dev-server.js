@@ -3,7 +3,7 @@ import Koa from 'koa'
 import { spawn } from 'child_process'
 import webpack from 'webpack'
 import clientConfig from './webpack.dev.conf'
-import config from './config'
+import { env, dev, source as src } from './config'
 import { processLog, electronLog } from './utils/logger'
 // import registerApi from '../src/server/register'
 import chafMiddleware from './middlewares/chafMiddleware'
@@ -34,22 +34,21 @@ const compileClient = () => {
     app.use(devMiddleware(compiler))
     app.use(hotMiddleware(compiler))
 
-    if (!config.dev.nodeServerEnabled) {
-      app.use(staticMiddleware('/static', config.source.static))
-      app.use(staticMiddleware('/', config.source.cache))
+    if (!dev.nodeServerEnabled) {
+      app.use(staticMiddleware('/static', src.static))
     } else {
       console.log(chalk.yellow('> Registering server Api \n'))
       // registerApi(app)
       serverHotReload()
     }
 
-    app.listen(config.dev.port, err => {
+    app.listen(dev.port, err => {
       if (err) {
         console.log(chalk.red(err))
         return
       }
 
-      console.log(chalk.green(`> Dev server Listening at ${config.dev.port} \n`))
+      console.log(chalk.green(`> Dev server Listening at ${dev.port} \n`))
       resolve()
     })
   })
@@ -90,7 +89,7 @@ const compileElectron = () => {
 }
 
 const serverHotReload = () => {
-  const watcher = require('chokidar').watch(config.source.server)
+  const watcher = require('chokidar').watch(src.server)
 
   watcher.on('ready', () => {
     watcher.on('all', (err, file) => {
@@ -99,10 +98,10 @@ const serverHotReload = () => {
         return
       }
 
-      if (config.dev.hotApiRegex.test(file)) {
+      if (dev.hotApiRegex.test(file)) {
         console.log(chalk.yellow('> Reloading hot modules of server... \n'))
         Object.keys(require.cache).forEach(id => {
-          if (config.dev.hotApiRegex.test(id)) delete require.cache[id]
+          if (dev.hotApiRegex.test(id)) delete require.cache[id]
         })
         console.log(chalk.green('> Hot modules of server are reloaded... \n'))
       }
@@ -127,12 +126,12 @@ const launchElectron = () => {
   })
 }
 
-if (config.env.is_web) {
+if (env.is_web) {
   compileClient().then(() => {
-    const uri = 'http://localhost:' + config.dev.port
+    const uri = 'http://localhost:' + dev.port
 
     // automatically open default browser
-    if (config.dev.autoOpen) {
+    if (dev.autoOpen) {
       require('opn')(uri)
     }
   }).catch(err => {

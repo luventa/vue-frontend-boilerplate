@@ -1,12 +1,12 @@
 import del from 'del'
 import Multispinner from 'multispinner'
-import config from './config'
+import { env } from './config'
 import clientConfig from './webpack.build.conf'
 import { processLog } from './utils/logger'
 import { compile } from './utils/compiler'
 
 const results = Array.apply(null)
-const tasks = config.env.target !== 'web' ? ['electron', 'client'] : ['client']
+const tasks = env.target !== 'web' ? ['electron', 'client'] : ['client']
 const spinners = new Multispinner(tasks, {
   preText: 'packing',
   postText: 'process'
@@ -34,7 +34,7 @@ compile(clientConfig).then(stats => {
   process.exit(1)
 })
 
-if (config.env.target !== 'web') {
+if (env.target !== 'web') {
   const electronConfig = require('./webpack.electron.conf').default
   compile(electronConfig).then(stats => {
     results.push({ proc: 'Electron', stats })
