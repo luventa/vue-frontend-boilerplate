@@ -16,27 +16,13 @@ try {
   process.exit(0)
 }
 
-const modules = []
 const params = process.argv.slice(2)
 const root = path.resolve(__dirname, '../')
 const asarFile = path.resolve(config.output.build, `${params.length > 0 ? params[0] : config.project}.asar`)
 const manifestFile = path.resolve(config.output.build, 'manifest.json')
-const collectModules = deps => {
-  if (!deps) return
-
-  for (const dep in deps) {
-    const pattern = `node_modules/${dep}/**`
-    if (modules.includes(pattern)) {
-      return true
-    }
-    modules.push(pattern)
-    collectModules(require(`../node_modules/${dep}/package.json`).dependencies)
-  }
-}
-collectModules(manifest.dependencies)
 
 asar.createPackageWithOptions(root, asarFile, {
-  pattern: `/{dist/**,node_modules,${modules.join(',')}}`
+  pattern: '/{dist/**,package.json}'
 }).then(info => {
   console.log(chalk.green(`\n  Package contains ${info.bytesWritten} total bytes.`))
 
