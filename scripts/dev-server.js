@@ -26,9 +26,9 @@ const compileClient = () => {
 
     app.env = 'development'
 
-    if (proxyMiddlewares.length > 0) {
-      app.use(...proxyMiddlewares)
-    }
+    proxyMiddlewares.forEach(proxyMiddleware => {
+      app.use(proxyMiddleware)
+    })
 
     app.use(chafMiddleware)
     app.use(devMiddleware(compiler))
